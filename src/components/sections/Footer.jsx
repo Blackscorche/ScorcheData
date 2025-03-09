@@ -1,10 +1,13 @@
 import React from 'react';
+import scorcheLogo from '../../assets/ScorcheLogo.png';
+
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 py-10 text-center">
+    <footer className="bg-gray-100 py-10 text-center rounded-xl">
       {/* Logo & Intro */}
       <div className="mb-6">
+        <img src={scorcheLogo} alt="ScorcheTech Logo" className="w-20 mx-auto mb-3" />
         <p className="text-gray-600 text-lg max-w-md mx-auto">
           Transforming businesses with innovative web and tech solutions, tailored for your needs.
         </p>
