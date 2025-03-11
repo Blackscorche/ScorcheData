@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { ThemeProvider } from "@/components/theme-provider"; 
 import Navbar from "./components/Navbar";
 import MobileMenu from "./MobileMenu";
 import Home from "./components/sections/Hero";
@@ -15,7 +16,7 @@ function Layout() {
 
   return (
     <>
-      {/* Hide Navbar if we're on the Dashboard page */}
+      {/* Hide Navbar & MobileMenu when on Dashboard */}
       {location.pathname !== "/dashboard" && (
         <>
           <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
@@ -41,9 +42,11 @@ function Layout() {
 
 function App() {
   return (
-    <Router>
-      <Layout />
-    </Router>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <Router>
+        <Layout />
+      </Router>
+    </ThemeProvider>
   );
 }
 

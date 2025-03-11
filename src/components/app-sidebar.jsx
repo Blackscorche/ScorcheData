@@ -1,7 +1,6 @@
 import * as React from "react"
 
-import { SearchForm } from "@/components/search-form"
-import { VersionSwitcher } from "@/components/version-switcher"
+
 import {
   Sidebar,
   SidebarContent,
@@ -43,8 +42,7 @@ export function AppSidebar({
   return (
     <Sidebar {...props}>
       <SidebarHeader>
-        <VersionSwitcher versions={data.versions} defaultVersion={data.versions[0]} />
-        <SearchForm />
+        <h2 className="text-2xl font-bold m-3 bg-gradient-to-r from-red-500 to-orange-500  bg-clip-text text-transparent">Hi there, Admin</h2>
       </SidebarHeader>
       <SidebarContent>
         {/* We create a SidebarGroup for each parent. */}
