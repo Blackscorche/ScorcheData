@@ -14,7 +14,7 @@ function Home() {
                 </p>
 
                 <div className="flex flex-wrap justify-center space-x-4">
-                    <a href="/login" className='border border-red-500 text-red-500 py-3 px-6 rounded font-medium transition duration-200 hover:bg-red-500/10 hover:-translate-y-0.5'>
+                    <a href="/dashboard" className='border border-red-500 text-red-500 py-3 px-6 rounded font-medium transition duration-200 hover:bg-red-500/10 hover:-translate-y-0.5'>
                         Login
                     </a>
 

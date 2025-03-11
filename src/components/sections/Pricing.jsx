@@ -1,5 +1,5 @@
 import React from 'react';
-
+import RevealOnScroll from '../RevealOnScroll'
 function Pricing() {
   const plans = [
     {
@@ -54,32 +54,35 @@ function Pricing() {
 
   return (
     <section id='pricing' className='min-h-screen py-16 px-6 text-center text-white'>
-      <h2 className='text-4xl font-bold mb-8 bg-gradient-to-r from-red-500 to-orange-500 text-transparent bg-clip-text'>
-        Pricing Plans
-      </h2>
-      <p className='text-gray-400 mb-12 max-w-4xl mx-auto'>
-        Choose a plan that suits your needs. We offer the best rates for data, electricity bills, and cable subscriptions.
-      </p>
+      <RevealOnScroll>
+        <h2 className='text-4xl font-bold mb-8 bg-gradient-to-r from-red-500 to-orange-500 text-transparent bg-clip-text'>
+          Pricing Plans
+        </h2>
+        <p className='text-gray-400 mb-12 max-w-4xl mx-auto'>
+          Choose a plan that suits your needs. We offer the best rates for data, electricity bills, and cable subscriptions.
+        </p>
 
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-        {plans.map((plan, index) => (
-          <div key={index} className='p-6 border border-white/10 rounded-lg backdrop-blur-lg shadow-lg h-full hover:scale-105 transition-transform duration-300'>
-            <h3 className='text-2xl font-bold mb-4 bg-gradient-to-r from-red-500 to-orange-500 text-transparent bg-clip-text'>
-              {plan.category}
-            </h3>
-            <ul className='space-y-4'>
-              {plan.details.map((item, idx) => (
-                <li key={idx} className='text-gray-300'>
-                  <span className='font-bold'>{item.amount}</span> - {item.price} ({item.validity})
-                </li>
-              ))}
-            </ul>
-            <button className='mt-4 bg-red-500 py-2 px-4 rounded font-medium transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(239,68,68,0.4)]'>
-              Buy Now
-            </button>
-          </div>
-        ))}
-      </div>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+          {plans.map((plan, index) => (
+            <div key={index} className='p-6 border border-white/10 rounded-lg backdrop-blur-lg shadow-lg h-full hover:scale-105 transition-transform duration-300'>
+              <h3 className='text-2xl font-bold mb-4 bg-gradient-to-r from-red-500 to-orange-500 text-transparent bg-clip-text'>
+                {plan.category}
+              </h3>
+              <ul className='space-y-4'>
+                {plan.details.map((item, idx) => (
+                  <li key={idx} className='text-gray-300'>
+                    <span className='font-bold'>{item.amount}</span> - {item.price} ({item.validity})
+                  </li>
+                ))}
+              </ul>
+              <button className='mt-4 bg-red-500 py-2 px-4 rounded font-medium transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(239,68,68,0.4)]'>
+                Buy Now
+              </button>
+            </div>
+          ))}
+        </div>
+      </RevealOnScroll>
+
     </section>
   );
 }
