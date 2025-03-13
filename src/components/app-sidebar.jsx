@@ -2,9 +2,6 @@ import * as React from "react";
 import {
   Sidebar,
   SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -14,39 +11,15 @@ import {
 import { Home, Users, CreditCard, Settings, LogOut } from "lucide-react"; // Importing icons
 
 const navData = [
-  {
-    title: "Dashboard",
-    url: "/admin/dashboard",
-    icon: <Home className="w-5 h-5" />,
-  },
-  {
-    title: "Users",
-    url: "/admin/users",
-    icon: <Users className="w-5 h-5" />,
-  },
-  {
-    title: "Transactions",
-    url: "/admin/transactions",
-    icon: <CreditCard className="w-5 h-5" />,
-  },
-  {
-    title: "Services",
-    url: "/admin/services",
-    icon: <Settings className="w-5 h-5" />,
-  },
-  {
-    title: "Settings",
-    url: "/admin/settings",
-    icon: <Settings className="w-5 h-5" />,
-  },
-  {
-    title: "Logout",
-    url: "/logout",
-    icon: <LogOut className="w-5 h-5 text-red-500" />,
-  },
+  { title: "Dashboard", section: "dashboard", icon: <Home className="w-5 h-5" /> },
+  { title: "Users", section: "users", icon: <Users className="w-5 h-5" /> },
+  { title: "Transactions", section: "transactions", icon: <CreditCard className="w-5 h-5" /> },
+  { title: "Services", section: "services", icon: <Settings className="w-5 h-5" /> },
+  { title: "Settings", section: "settings", icon: <Settings className="w-5 h-5" /> },
+  { title: "Logout", section: "logout", icon: <LogOut className="w-5 h-5 text-red-500" /> },
 ];
 
-export function AppSidebar({ ...props }) {
+export function AppSidebar({ setActiveSection, ...props }) {
   return (
     <Sidebar {...props} className="bg-gray-900 text-white">
       <SidebarHeader>
@@ -59,9 +32,12 @@ export function AppSidebar({ ...props }) {
           {navData.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild>
-                <a href={item.url} className="flex items-center gap-3 p-2 hover:bg-gray-800 rounded-lg">
+                <button
+                  onClick={() => setActiveSection(item.section)}
+                  className="flex items-center gap-3 p-2 w-full text-left hover:bg-gray-800 rounded-lg"
+                >
                   {item.icon} {item.title}
-                </a>
+                </button>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
