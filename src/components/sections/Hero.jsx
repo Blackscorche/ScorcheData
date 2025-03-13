@@ -1,6 +1,6 @@
 import React from 'react'
 import RevealOnScroll from '../RevealOnScroll'
-
+import { Link } from 'react-router-dom'
 function Home() {
   return (
     <section id='home' className='min-h-screen flex items-center justify-center relative'>
@@ -14,9 +14,9 @@ function Home() {
                 </p>
 
                 <div className="flex flex-wrap justify-center space-x-4">
-                    <a href="/dashboard" className='border border-red-500 text-red-500 py-3 px-6 rounded font-medium transition duration-200 hover:bg-red-500/10 hover:-translate-y-0.5'>
+                    <Link to="/dashboard" className='border border-red-500 text-red-500 py-3 px-6 rounded font-medium transition duration-200 hover:bg-red-500/10 hover:-translate-y-0.5'>
                         Login
-                    </a>
+                    </Link>
 
                     <a href="/signup" className='bg-red-500 py-3 px-6 rounded font-medium transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(239,68,68,0.4)]'>
                         Sign Up
