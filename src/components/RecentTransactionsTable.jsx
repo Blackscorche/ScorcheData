@@ -18,43 +18,77 @@ export function RecentTransactionsTable() {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <table className="w-full text-left border-collapse">
-          <thead>
-            <tr className="text-sm border-b border-gray-700/50">
-              <th className="p-3 text-gray-400">Transaction ID</th>
-              <th className="p-3 text-gray-400">User</th>
-              <th className="p-3 text-gray-400">Product</th>
-              <th className="p-3 text-gray-400">Amount</th>
-              <th className="p-3 text-gray-400">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {transactions.map((tx, index) => (
-              <tr
-                key={tx.id}
-                className={`hover:bg-red-100/10 transition cursor-pointer ${
-                  index !== transactions.length - 1 ? "border-b border-gray-700/50" : ""
-                }`}
-              >
-                <td className="p-3 text-gray-300">{tx.id}</td>
-                <td className="p-3 text-gray-300">{tx.user}</td>
-                <td className="p-3 text-gray-300">{tx.product}</td>
-                <td className="p-3 text-gray-300">{tx.amount}</td>
-                <td
-                  className={`p-3 font-medium ${
-                    tx.status === "Completed"
-                      ? "text-green-400"
-                      : tx.status === "Pending"
-                      ? "text-yellow-400"
-                      : "text-red-400"
+        {/* Responsive Table Wrapper */}
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse hidden sm:table">
+            <thead>
+              <tr className="text-sm border-b border-gray-700/50">
+                <th className="p-3 text-gray-400">Transaction ID</th>
+                <th className="p-3 text-gray-400">User</th>
+                <th className="p-3 text-gray-400">Product</th>
+                <th className="p-3 text-gray-400">Amount</th>
+                <th className="p-3 text-gray-400">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {transactions.map((tx, index) => (
+                <tr
+                  key={tx.id}
+                  className={`hover:bg-red-100/10 transition cursor-pointer ${
+                    index !== transactions.length - 1 ? "border-b border-gray-700/50" : ""
                   }`}
                 >
-                  {tx.status}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                  <td className="p-3 text-gray-300">{tx.id}</td>
+                  <td className="p-3 text-gray-300">{tx.user}</td>
+                  <td className="p-3 text-gray-300">{tx.product}</td>
+                  <td className="p-3 text-gray-300">{tx.amount}</td>
+                  <td
+                    className={`p-3 font-medium ${
+                      tx.status === "Completed"
+                        ? "text-green-400"
+                        : tx.status === "Pending"
+                        ? "text-yellow-400"
+                        : "text-red-400"
+                    }`}
+                  >
+                    {tx.status}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Responsive Card View for Small Screens */}
+        <div className="sm:hidden">
+          {transactions.map((tx) => (
+            <div key={tx.id} className="border border-gray-700/50 rounded-lg p-4 mb-3">
+              <p className="text-gray-300">
+                <span className="font-semibold text-gray-400">Transaction ID:</span> {tx.id}
+              </p>
+              <p className="text-gray-300">
+                <span className="font-semibold text-gray-400">User:</span> {tx.user}
+              </p>
+              <p className="text-gray-300">
+                <span className="font-semibold text-gray-400">Product:</span> {tx.product}
+              </p>
+              <p className="text-gray-300">
+                <span className="font-semibold text-gray-400">Amount:</span> {tx.amount}
+              </p>
+              <p
+                className={`font-semibold ${
+                  tx.status === "Completed"
+                    ? "text-green-400"
+                    : tx.status === "Pending"
+                    ? "text-yellow-400"
+                    : "text-red-400"
+                }`}
+              >
+                {tx.status}
+              </p>
+            </div>
+          ))}
+        </div>
       </CardContent>
     </Card>
   );
