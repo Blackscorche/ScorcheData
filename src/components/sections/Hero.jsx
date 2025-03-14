@@ -18,9 +18,9 @@ function Home() {
                         Login
                     </Link>
 
-                    <a href="/signup" className='bg-red-500 py-3 px-6 rounded font-medium transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(239,68,68,0.4)]'>
+                    <Link to="/userdashboard" className='bg-red-500 py-3 px-6 rounded font-medium transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(239,68,68,0.4)]'>
                         Sign Up
-                    </a>
+                    </Link>
                 </div>
 
                 {/* Animated text link with color transition */}

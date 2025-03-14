@@ -20,14 +20,14 @@ const topProducts = [
 
 export function TopSellingProductsTable() {
   return (
-    <div className="border rounded-xl bg-transparent p-4 shadow-lg">
+    <div className="border rounded-xl bg-transparent p-4 shadow-lg ">
       <h2 className="text-lg font-semibold bg-gradient-to-r from-red-500 via-orange-500 to-black text-transparent bg-clip-text mb-3">
         Top Selling Products
       </h2>
       <Table className="text-gray-300">
         <TableCaption>List of top-selling products.</TableCaption>
         <TableHeader>
-          <TableRow className="">
+          <TableRow className="bg-gradient-to-r from-orange-500 to-red-500 text-white">
             <TableHead>Product</TableHead>
             <TableHead>Sales</TableHead>
             <TableHead className="text-right">Revenue</TableHead>

@@ -25,7 +25,7 @@ export default function Users() {
   };
 
   return (
-    <div className="p-6 text-white">
+    <div className=" text-white">
       {/* Overview Cards */}
       <div className="grid gap-4 md:grid-cols-3">
         <div className="p-6 rounded-xl bg-gradient-to-r from-orange-500 to-red-500 shadow-lg">
@@ -58,7 +58,7 @@ export default function Users() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <Table className="mt-6 border border-gray-700 rounded-xl shadow-lg overflow-hidden ">
+        <Table className="mt-6 border border-gray-300 rounded shadow-xl overflow-hidden ">
           <TableHeader>
             <TableRow className="bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold">
               <TableHead>Name</TableHead>

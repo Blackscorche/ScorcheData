@@ -11,6 +11,7 @@ import {
 // Import dashboard sections
 import Users from "@/components/AdminDashboardPages/Users";
 import Transactions from "@/components/AdminDashboardPages/Transactions";
+
 import Services from "@/components/AdminDashboardPages/DashServices";
 import Settings from "@/components/AdminDashboardPages/Settings";
 
@@ -21,7 +22,6 @@ import { VtuSalesChart } from "./components/VtuSalesChart";
 import { OrdersOverviewChart } from "./components/OrdersOverview";
 import { RecentTransactionsTable } from "./components/RecentTransactionsTable";
 import { TopSellingProductsTable } from "./components/TopSellingProductsTable";
-
 export default function Dashboard() {
   const [activeSection, setActiveSection] = useState("dashboard");
 
@@ -56,7 +56,7 @@ export default function Dashboard() {
             </div>
 
             {/* Graph & Analytics */}
-            <div className="grid auto-rows-min gap-4 md:grid-cols-2">
+            <div className="grid auto-rows-min gap-4 md:grid-cols-3">
               <div className="rounded-xl border border-red-250">
                 <RevenueChart />
               </div>
@@ -90,7 +90,7 @@ export default function Dashboard() {
         </header>
 
         {/* DASHBOARD CONTENT */}
-        <div className="flex flex-1 flex-col gap-4 p-4 text-white">
+        <div className="flex flex-1 flex-col gap-4 p-6 text-white">
           {renderContent()}
         </div>
       </SidebarInset>

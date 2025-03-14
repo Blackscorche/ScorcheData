@@ -9,6 +9,7 @@ import About from "./components/sections/About";
 import Pricing from "./components/sections/Pricing";
 import Footer from "./components/sections/Footer";
 import Dashboard from "./Dashboard"; 
+import UserDashboard from "./UserDashboard";
 
 function Layout() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -35,6 +36,7 @@ function Layout() {
           </>
         } />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/userdashboard" element={<UserDashboard />} />
       </Routes>
     </>
   );

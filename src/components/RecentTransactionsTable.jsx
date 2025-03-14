@@ -21,7 +21,7 @@ export function RecentTransactionsTable() {
         {/* Responsive Table Wrapper */}
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse hidden sm:table">
-            <thead>
+            <thead className="bg-gradient-to-r from-orange-500 to-red-500 text-white">
               <tr className="text-sm border-b border-gray-700/50">
                 <th className="p-3 text-gray-400">Transaction ID</th>
                 <th className="p-3 text-gray-400">User</th>
