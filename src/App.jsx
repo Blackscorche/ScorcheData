@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { useLocation, BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/theme-provider"; 
 import Navbar from "./components/Navbar";
 import MobileMenu from "./MobileMenu";
@@ -11,44 +10,50 @@ import Footer from "./components/sections/Footer";
 import Dashboard from "./Dashboard"; 
 import UserDashboard from "./UserDashboard";
 
-function Layout() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const location = useLocation(); // Get current route
-
-  return (
-    <>
-      {/* Hide Navbar & MobileMenu when on Dashboard */}
-      {location.pathname !== "/dashboard" && (
-        <>
-          <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-          <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-        </>
-      )}
-
-      <Routes>
-        <Route path="/" element={
-          <>
-            <Home />
-            <About />
-            <Services />
-            <Pricing />
-            <Footer />
-          </>
-        } />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/userdashboard" element={<UserDashboard />} />
-      </Routes>
-    </>
-  );
-}
-
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Router>
-        <Layout />
+        <MainLayout />
       </Router>
     </ThemeProvider>
+  );
+}
+
+function MainLayout() {
+  const location = useLocation();
+
+  // Hide Navbar & MobileMenu on both dashboards and their subpages
+  const isDashboard =
+    location.pathname.startsWith("/dashboard") ||
+    location.pathname.startsWith("/userdashboard");
+
+  return (
+    <>
+      {!isDashboard && (
+        <>
+          <Navbar />
+          <MobileMenu />
+        </>
+      )}
+
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Home />
+              <About />
+              <Services />
+              <Pricing />
+              <Footer />
+            </>
+          }
+        />
+        <Route path="/dashboard/*" element={<Dashboard />} />
+        <Route path="/userdashboard/*" element={<UserDashboard />} />
+      </Routes>
+    </>
   );
 }
 
