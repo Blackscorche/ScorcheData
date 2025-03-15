@@ -1,76 +1,136 @@
 import { useState } from "react";
-import { FaEllipsisH, FaMoneyBillWave, FaDatabase, FaMobileAlt, FaWifi, FaShoppingBag, FaBolt, FaTv } from "react-icons/fa";
+import {
+  FaPlusCircle,     // For "Add Funds"
+  FaExchangeAlt,    // For "Transfer"
+  FaMobileAlt,      // For "Airtime"
+  FaGlobe,          // For "Data"
+  FaArrowUp,        // For a sample transaction icon
+  FaArrowDown,
+} from "react-icons/fa";
+import scorcheLogo from "@/assets/Red.jpeg";
 
 export default function UserDashboard() {
   const [user] = useState({
-    name: "John Doe",
-    balance: "₦8,640.00",
-    percentageChange: "+4.35%",
+    name: "ABUBAKAR",
+    balance: "₦0.00",
+    accountNumber: "366 819 5332",
+    lastLogin: "Mar 14, 2025",
+    level: 3,
   });
 
+  const recentTransactions = [
+    { id: 1, title: "Inter bank transfer out", amount: "₦3,310", type: "out" },
+    { id: 2, title: "MTN 2G Data", amount: "₦1,500", type: "out" },
+    { id: 3, title: "Transfer", amount: "₦2,000", type: "in" },
+  ];
+
   return (
-    <div className="min-h-screen bg-black text-white p-4 space-y-6">
-      {/* Bank Card */}
-      <div className="relative p-4 bg-[#121212] text-white rounded-2xl shadow-lg">
-        {/* Profile & Options */}
-        <div className="flex justify-between items-center">
+    <div className="min-h-screen bg-black text-white">
+      {/* Top Gradient Section */}
+      <div className="p-4 pb-12 bg-gradient-to-b from-orange-500 to-red-500 rounded-b-3xl">
+        {/* Header Row */}
+        <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img
-              src="https://via.placeholder.com/50" // Replace with real profile image
-              alt="User Profile"
-              className="w-12 h-12 rounded-full border-2 border-gray-500"
+              src={scorcheLogo}
+              alt="User Avatar"
+              className="w-12 h-12 rounded-full border-2 border-white shrink-0"
             />
             <div>
-              <p className="text-sm text-gray-400">Good Afternoon</p>
-              <h2 className="text-lg font-bold">{user.name}</h2>
+              <p className="text-sm text-white/80">Hi {user.name.toUpperCase()}</p>
+              <p className="text-xs text-white/70">Last login on {user.lastLogin}</p>
             </div>
           </div>
-          <FaEllipsisH className="text-gray-400 text-lg" />
+          {/* Level Badge */}
+          <div className="text-center text-xs bg-black/20 px-2 py-1 rounded-full">
+            Level {user.level}
+          </div>
         </div>
 
-        {/* Balance Info */}
-        <div className="mt-4">
-          <p className="text-sm text-gray-400">Available Balance</p>
+        {/* Balance Card */}
+        <div className="mt-6 bg-black/20 p-4 rounded-xl flex flex-col gap-1">
+          <div className="flex items-center justify-between">
+            <p className="text-sm text-white/80">Balance</p>
+            <span className="bg-black/30 text-xs px-2 py-0.5 rounded-full">
+              Account Number
+            </span>
+          </div>
           <h1 className="text-3xl font-bold">{user.balance}</h1>
-          <p className="text-sm text-green-500">{user.percentageChange}</p>
+          <div className="flex items-center justify-between mt-1">
+            <div className="text-xs text-white/70">Acct: {user.accountNumber}</div>
+            <button className="bg-green-500 hover:bg-green-600 text-xs px-2 py-1 rounded-full">
+              View
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Three Action Cards */}
-      <div className="grid grid-cols-3 gap-4">
-        <div className="p-4 bg-gradient-to-r from-orange-500 to-red-500 text-center rounded-xl shadow-lg">
-          <FaMoneyBillWave className="text-3xl mx-auto" />
-          <p className="text-sm font-semibold mt-2">Deposit</p>
+      {/* Main Content */}
+      <div className="-mt-8 px-4 space-y-6">
+        {/* Action Icons (Add Funds, Transfer, Airtime, Data) */}
+        <div className="bg-[#1A1A1A] p-4 rounded-xl shadow-md flex items-center justify-around">
+          <div className="flex flex-col items-center gap-1">
+            <div className="bg-black/30 p-2 rounded-full">
+              <FaPlusCircle size={24} />
+            </div>
+            <p className="text-xs">Add Funds</p>
+          </div>
+          <div className="flex flex-col items-center gap-1">
+            <div className="bg-black/30 p-2 rounded-full">
+              <FaExchangeAlt size={24} />
+            </div>
+            <p className="text-xs">Transfer</p>
+          </div>
+          <div className="flex flex-col items-center gap-1">
+            <div className="bg-black/30 p-2 rounded-full">
+              <FaMobileAlt size={24} />
+            </div>
+            <p className="text-xs">Airtime</p>
+          </div>
+          <div className="flex flex-col items-center gap-1">
+            <div className="bg-black/30 p-2 rounded-full">
+              <FaGlobe size={24} />
+            </div>
+            <p className="text-xs">Data</p>
+          </div>
         </div>
-        <div className="p-4 bg-gradient-to-r from-orange-500 to-red-500 text-center rounded-xl shadow-lg">
-          <FaDatabase className="text-3xl mx-auto" />
-          <p className="text-sm font-semibold mt-2">Transactions</p>
-        </div>
-        <div className="p-4 bg-gradient-to-r from-orange-500 to-red-500 text-center rounded-xl shadow-lg">
-          <FaMobileAlt className="text-3xl mx-auto" />
-          <p className="text-sm font-semibold mt-2">Data Plans</p>
-        </div>
-      </div>
 
-      {/* Services Section */}
-      <div className="grid grid-cols-4 gap-4 text-center">
-        <div className="p-4 bg-[#1E1E1E] rounded-lg shadow-lg">
-          <FaWifi className="text-2xl mx-auto text-red-500" />
-          <p className="text-xs mt-1">Internet</p>
+        {/* Promo Banner */}
+        <div className="bg-[#1A1A1A] p-4 rounded-xl shadow-md text-center">
+          <h2 className="text-sm font-bold mb-1">
+            Unlock up to <span className="text-yellow-300">₦500</span> in bonuses
+          </h2>
+          <p className="text-xs text-white/70 mb-2">
+            by upgrading your KYC level
+          </p>
+          <div className="bg-orange-500 hover:bg-orange-600 text-xs px-3 py-1 inline-block rounded-full">
+            Limited Time Offer: Mar 10 - Apr 30, 2025
+          </div>
         </div>
-        <div className="p-4 bg-[#1E1E1E] rounded-lg shadow-lg">
-          <FaShoppingBag className="text-2xl mx-auto text-orange-500" />
-          <p className="text-xs mt-1">Shopping</p>
-        </div>
-        <div className="p-4 bg-[#1E1E1E] rounded-lg shadow-lg">
-          <FaBolt className="text-2xl mx-auto text-red-500" />
-          <p className="text-xs mt-1">Electricity</p>
-        </div>
-        <div className="p-4 bg-[#1E1E1E] rounded-lg shadow-lg">
-          <FaTv className="text-2xl mx-auto text-orange-500" />
-          <p className="text-xs mt-1">TV</p>
+
+        {/* Recent Transactions */}
+        <div className="bg-[#1A1A1A] p-4 rounded-xl shadow-md">
+          <h3 className="text-sm font-semibold mb-3">Recent transactions</h3>
+          <div className="space-y-2">
+            {recentTransactions.map((tx) => (
+              <div
+                key={tx.id}
+                className="flex items-center justify-between bg-black/20 rounded-lg px-3 py-2"
+              >
+                <div className="flex items-center gap-2">
+                  {tx.type === "in" ? (
+                    <FaArrowDown className="text-green-400" />
+                  ) : (
+                    <FaArrowUp className="text-red-400" />
+                  )}
+                  <p className="text-xs sm:text-sm">{tx.title}</p>
+                </div>
+                <p className="text-xs sm:text-sm font-medium">{tx.amount}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
-  );
+  )
 }
