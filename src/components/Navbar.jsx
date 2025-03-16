@@ -8,14 +8,14 @@ function Navbar({ menuOpen, setMenuOpen }) {
     }, [menuOpen]);
 
     return (
-        <div className="fixed top-0 left-1/2 transform -translate-x-1/2 w-[92%] z-40 backdrop-blur-none shadow-none">
+        <div className="fixed top-0 left-1/2 transform -translate-x-1/2 w-[92%] z-40 backdrop-blur shadow-none">
             <div className="max-w-screen-lg mx-auto px-4">
                 <div className="flex items-center justify-between h-16 space-x-16">
                     {/* Logo */}
                     <a href="#" className="flex items-center font-mono text-xl font-bold text-white">
                         <img src={Logo} width={40} />
                         <span className="bg-gradient-to-r from-red-500 to-orange-500 text-transparent bg-clip-text pt-2">
-                            Scorche<span className='text-white/80'>net</span>
+                            Scorche<span className='text-white/80'>Pay</span>
                         </span>
                     </a>
 

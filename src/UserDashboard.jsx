@@ -1,10 +1,10 @@
 import { useState } from "react";
 import {
-  FaPlusCircle,     // For "Add Funds"
-  FaExchangeAlt,    // For "Transfer"
-  FaMobileAlt,      // For "Airtime"
-  FaGlobe,          // For "Data"
-  FaArrowUp,        // For a sample transaction icon
+  FaPlusCircle,
+  FaExchangeAlt,
+  FaMobileAlt,
+  FaGlobe,
+  FaArrowUp,
   FaArrowDown,
 } from "react-icons/fa";
 import scorcheLogo from "@/assets/Red.jpeg";
@@ -26,9 +26,7 @@ export default function UserDashboard() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Top Gradient Section */}
       <div className="p-4 pb-12 bg-gradient-to-b from-orange-500 to-red-500 rounded-b-3xl">
-        {/* Header Row */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img
@@ -41,19 +39,15 @@ export default function UserDashboard() {
               <p className="text-xs text-white/70">Last login on {user.lastLogin}</p>
             </div>
           </div>
-          {/* Level Badge */}
           <div className="text-center text-xs bg-black/20 px-2 py-1 rounded-full">
             Level {user.level}
           </div>
         </div>
 
-        {/* Balance Card */}
         <div className="mt-6 bg-black/20 p-4 rounded-xl flex flex-col gap-1">
           <div className="flex items-center justify-between">
             <p className="text-sm text-white/80">Balance</p>
-            <span className="bg-black/30 text-xs px-2 py-0.5 rounded-full">
-              Account Number
-            </span>
+            <span className="bg-black/30 text-xs px-2 py-0.5 rounded-full">Account Number</span>
           </div>
           <h1 className="text-3xl font-bold">{user.balance}</h1>
           <div className="flex items-center justify-between mt-1">
@@ -65,58 +59,33 @@ export default function UserDashboard() {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="-mt-8 px-4 space-y-6">
-        {/* Action Icons (Add Funds, Transfer, Airtime, Data) */}
         <div className="bg-[#1A1A1A] p-4 rounded-xl shadow-md flex items-center justify-around">
-          <div className="flex flex-col items-center gap-1">
-            <div className="bg-black/30 p-2 rounded-full">
-              <FaPlusCircle size={24} />
+          {[FaPlusCircle, FaExchangeAlt, FaMobileAlt, FaGlobe].map((Icon, index) => (
+            <div key={index} className="flex flex-col items-center gap-1">
+              <div className="bg-black/30 p-2 rounded-full">
+                <Icon size={24} />
+              </div>
+              <p className="text-xs">{["Add Funds", "Transfer", "Airtime", "Data"][index]}</p>
             </div>
-            <p className="text-xs">Add Funds</p>
-          </div>
-          <div className="flex flex-col items-center gap-1">
-            <div className="bg-black/30 p-2 rounded-full">
-              <FaExchangeAlt size={24} />
-            </div>
-            <p className="text-xs">Transfer</p>
-          </div>
-          <div className="flex flex-col items-center gap-1">
-            <div className="bg-black/30 p-2 rounded-full">
-              <FaMobileAlt size={24} />
-            </div>
-            <p className="text-xs">Airtime</p>
-          </div>
-          <div className="flex flex-col items-center gap-1">
-            <div className="bg-black/30 p-2 rounded-full">
-              <FaGlobe size={24} />
-            </div>
-            <p className="text-xs">Data</p>
-          </div>
+          ))}
         </div>
 
-        {/* Promo Banner */}
         <div className="bg-[#1A1A1A] p-4 rounded-xl shadow-md text-center">
           <h2 className="text-sm font-bold mb-1">
             Unlock up to <span className="text-yellow-300">₦500</span> in bonuses
           </h2>
-          <p className="text-xs text-white/70 mb-2">
-            by upgrading your KYC level
-          </p>
+          <p className="text-xs text-white/70 mb-2">by upgrading your KYC level</p>
           <div className="bg-orange-500 hover:bg-orange-600 text-xs px-3 py-1 inline-block rounded-full">
             Limited Time Offer: Mar 10 - Apr 30, 2025
           </div>
         </div>
 
-        {/* Recent Transactions */}
         <div className="bg-[#1A1A1A] p-4 rounded-xl shadow-md">
           <h3 className="text-sm font-semibold mb-3">Recent transactions</h3>
           <div className="space-y-2">
             {recentTransactions.map((tx) => (
-              <div
-                key={tx.id}
-                className="flex items-center justify-between bg-black/20 rounded-lg px-3 py-2"
-              >
+              <div key={tx.id} className="flex items-center justify-between bg-black/20 rounded-lg px-3 py-2">
                 <div className="flex items-center gap-2">
                   {tx.type === "in" ? (
                     <FaArrowDown className="text-green-400" />
@@ -132,5 +101,5 @@ export default function UserDashboard() {
         </div>
       </div>
     </div>
-  )
+  );
 }

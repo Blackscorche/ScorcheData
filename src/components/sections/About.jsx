@@ -12,9 +12,7 @@ function About() {
           <p className='text-gray-300 text-lg mb-8'>
             At ScorcheNet, we believe that digital transactions should be <span className='font-semibold'>fast, affordable, and hassle-free</span>. That's why we've built a platform that simplifies the way you buy data, swap airtime, pay bills, and more—so you can focus on what truly matters.
           </p>
-          <p className='text-gray-300 text-lg mb-8'>
-            With a commitment to security and innovation, we are trusted by thousands who rely on our seamless services every day.
-          </p>
+
           <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
             {[ 
               { title: 'Instant Data & Airtime', desc: 'Buy affordable data and airtime instantly, hassle-free.' },
