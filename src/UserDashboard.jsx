@@ -1,22 +1,15 @@
 import { useState } from "react";
-import {
-  FaPlusCircle,
-  FaExchangeAlt,
-  FaMobileAlt,
-  FaGlobe,
-  FaArrowUp,
-  FaArrowDown,
-  FaWifi,
-  FaTv,
-  FaBolt,
-  FaShoppingCart,
-} from "react-icons/fa";
+import CountUp from "react-countup";
+import { motion } from "framer-motion";
+import { FaCopy, FaPlusCircle, FaExchangeAlt, FaMobileAlt, FaGlobe, FaWifi, FaTv, FaBolt, FaShoppingCart } from "react-icons/fa";
 import scorcheLogo from "@/assets/Red.jpeg";
+import { FaArrowUp, FaArrowDown } from "react-icons/fa";
+
 
 export default function UserDashboard() {
   const [user] = useState({
     name: "BLACKSCORCHE",
-    balance: "₦0.00",
+    balance: 15000, // Change this to your real balance value
     accountNumber: "366 819 5332",
     lastLogin: "Mar 14, 2025",
     level: 3,
@@ -27,6 +20,23 @@ export default function UserDashboard() {
     { id: 2, title: "MTN 2G Data", amount: "₦1,500", type: "out" },
     { id: 3, title: "Transfer", amount: "₦2,000", type: "in" },
   ];
+
+  const services = [
+    { icon: FaWifi, name: "Internet" },
+    { icon: FaTv, name: "Cable TV" },
+    { icon: FaBolt, name: "Electricity" },
+    { icon: FaShoppingCart, name: "Shopping" },
+  ];
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(user.accountNumber);
+    alert("Account Number Copied!");
+  };
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -55,9 +65,14 @@ export default function UserDashboard() {
             <p className="text-sm text-white/80">Balance</p>
             <span className="bg-black/30 text-xs px-2 py-0.5 rounded-full">Account Number</span>
           </div>
-          <h1 className="text-3xl font-bold">{user.balance}</h1>
+          <h1 className="text-3xl font-bold">
+            ₦<CountUp start={0} end={user.balance} duration={2} separator="," />
+          </h1>
           <div className="flex items-center justify-between mt-1">
-            <div className="text-xs text-white/70">Acct: {user.accountNumber}</div>
+            <div className="text-xs text-white/70 flex items-center gap-2">
+              Acct: {user.accountNumber}
+              <FaCopy className="cursor-pointer hover:text-gray-300" onClick={copyToClipboard} />
+            </div>
             <button className="bg-green-500 hover:bg-green-600 text-xs px-2 py-1 rounded-full">
               View
             </button>
@@ -80,22 +95,41 @@ export default function UserDashboard() {
         </div>
 
         {/* Services Section */}
-        <div className="bg-[#1A1A1A] p-4 rounded-xl shadow-md">
-          <h3 className="text-sm font-semibold mb-3">Services</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {[
-              { icon: FaWifi, name: "Internet" },
-              { icon: FaTv, name: "Cable TV" },
-              { icon: FaBolt, name: "Electricity" },
-              { icon: FaShoppingCart, name: "Shopping" },
-            ].map((service, index) => (
-              <div key={index} className="flex flex-col items-center gap-2 bg-black/20 p-3 rounded-lg">
-                <service.icon size={24} />
-                <p className="text-xs sm:text-sm">{service.name}</p>
-              </div>
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          className="bg-[#1A1A1A] p-5 rounded-xl shadow-md"
+        >
+          <h3 className="text-sm font-semibold mb-4">Services</h3>
+          <motion.div
+            className="grid grid-cols-4 gap-4 md:grid-cols-4"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
+            }}
+          >
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.1)" }}
+                className="flex flex-col items-center gap-2 bg-black/30 p-3 rounded-full transition-all duration-300 cursor-pointer"
+              >
+                <service.icon size={22} className="text-orange-400" />
+                <p className="text-xs sm:text-sm font-medium">{service.name}</p>
+              </motion.div>
             ))}
+          </motion.div>
+
+          {/* More Button */}
+          <div className="flex justify-center mt-4">
+            <button className="bg-red-500 hover:bg-red-600 text-xs px-4 py-2 rounded-full">
+              More Services
+            </button>
           </div>
-        </div>
+        </motion.div>
 
         {/* Recent Transactions */}
         <div className="bg-[#1A1A1A] p-4 rounded-xl shadow-md">
