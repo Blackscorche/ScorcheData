@@ -8,8 +8,9 @@ export default function ForgotPassword() {
       <div className="w-full max-w-sm bg-[#13131A] p-6 rounded-xl">
         {/* Logo */}
         <div className="flex items-center space-x-2">
-          <div className="w-6 h-6 bg-gradient-to-r from-purple-500 to-orange-500 rounded-md"></div>
-          <h1 className="text-xl font-bold text-white">ScorcheNet</h1>
+        <span className="bg-gradient-to-r from-red-500 to-orange-500 text-transparent bg-clip-text pt-2 text-2xl font-bold">
+            Scorche<span className='text-white/80'>Pay</span>
+          </span>
         </div>
 
         {/* Title */}
@@ -43,7 +44,7 @@ export default function ForgotPassword() {
             {/* Send Reset Link Button */}
             <button
               type="submit"
-              className="w-full py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-md transition"
+              className="w-full cursor-pointer py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-md transition"
             >
               Send Reset Link
             </button>
@@ -51,7 +52,7 @@ export default function ForgotPassword() {
             {/* Back to Login */}
             <p className="text-center text-sm text-gray-400 mt-3">
               Remember your password?{" "}
-              <a href="/login" className="text-orange-500 font-medium">
+              <a href="/SignIn" className="cursor-pointer text-orange-500 font-medium">
                 Log in
               </a>
             </p>

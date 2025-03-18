@@ -1,5 +1,5 @@
 import { useLocation, BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "@/components/theme-provider"; 
+import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "./components/Navbar";
 import MobileMenu from "./MobileMenu";
 import Home from "./components/sections/Hero";
@@ -7,10 +7,10 @@ import Services from "./components/sections/Services";
 import About from "./components/sections/About";
 import Pricing from "./components/sections/Pricing";
 import Footer from "./components/sections/Footer";
-import Dashboard from "./Dashboard"; 
-import UserDashboard from "./UserDashboard";
 import SignUp from "./components/Auth/SignUp";
 import SignIn from "./components/Auth/SignIn";
+import UserDashboard from "./UserDashboard";
+import Dashboard from "./Dashboard";
 import ForgotPassword from "./components/Auth/ForgotPassword";
 
 function App() {
@@ -26,14 +26,16 @@ function App() {
 function MainLayout() {
   const location = useLocation();
 
-  // Hide Navbar & MobileMenu on both dashboards and their subpages
-  const isDashboard =
-    location.pathname.startsWith("/SignIn") ||
-    location.pathname.startsWith("/SignUp");
+  const isAuthPage =
+    location.pathname === "/signin" ||
+    location.pathname === "/signup" ||
+    location.pathname === "/forgotpassword" ||
+    location.pathname.startsWith("/dashboard")||
+    location.pathname.startsWith("/userdashboard");
 
   return (
     <>
-      {!isDashboard && (
+      {!isAuthPage && (
         <>
           <Navbar />
           <MobileMenu />
@@ -53,10 +55,11 @@ function MainLayout() {
             </>
           }
         />
-        <Route path="/SignIn/" element={<SignIn />} />
-        <Route path="/SignUp/" element={<SignUp />} />
-        
-        <Route path="/ForgotPassword/" element={<ForgotPassword />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/userdashboard" element={<UserDashboard />} />
+        <Route path="/forgotpassword" element={<ForgotPassword />} />
       </Routes>
     </>
   );

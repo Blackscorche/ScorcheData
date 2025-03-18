@@ -6,12 +6,16 @@ import {
   FaGlobe,
   FaArrowUp,
   FaArrowDown,
+  FaWifi,
+  FaTv,
+  FaBolt,
+  FaShoppingCart,
 } from "react-icons/fa";
 import scorcheLogo from "@/assets/Red.jpeg";
 
 export default function UserDashboard() {
   const [user] = useState({
-    name: "ABUBAKAR",
+    name: "BLACKSCORCHE",
     balance: "₦0.00",
     accountNumber: "366 819 5332",
     lastLogin: "Mar 14, 2025",
@@ -26,6 +30,7 @@ export default function UserDashboard() {
 
   return (
     <div className="min-h-screen bg-black text-white">
+      {/* Header Section */}
       <div className="p-4 pb-12 bg-gradient-to-b from-orange-500 to-red-500 rounded-b-3xl">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -44,6 +49,7 @@ export default function UserDashboard() {
           </div>
         </div>
 
+        {/* Balance Section */}
         <div className="mt-6 bg-black/20 p-4 rounded-xl flex flex-col gap-1">
           <div className="flex items-center justify-between">
             <p className="text-sm text-white/80">Balance</p>
@@ -59,7 +65,9 @@ export default function UserDashboard() {
         </div>
       </div>
 
+      {/* Main Content Section */}
       <div className="-mt-8 px-4 space-y-6">
+        {/* Quick Actions */}
         <div className="bg-[#1A1A1A] p-4 rounded-xl shadow-md flex items-center justify-around">
           {[FaPlusCircle, FaExchangeAlt, FaMobileAlt, FaGlobe].map((Icon, index) => (
             <div key={index} className="flex flex-col items-center gap-1">
@@ -71,16 +79,25 @@ export default function UserDashboard() {
           ))}
         </div>
 
-        <div className="bg-[#1A1A1A] p-4 rounded-xl shadow-md text-center">
-          <h2 className="text-sm font-bold mb-1">
-            Unlock up to <span className="text-yellow-300">₦500</span> in bonuses
-          </h2>
-          <p className="text-xs text-white/70 mb-2">by upgrading your KYC level</p>
-          <div className="bg-orange-500 hover:bg-orange-600 text-xs px-3 py-1 inline-block rounded-full">
-            Limited Time Offer: Mar 10 - Apr 30, 2025
+        {/* Services Section */}
+        <div className="bg-[#1A1A1A] p-4 rounded-xl shadow-md">
+          <h3 className="text-sm font-semibold mb-3">Services</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            {[
+              { icon: FaWifi, name: "Internet" },
+              { icon: FaTv, name: "Cable TV" },
+              { icon: FaBolt, name: "Electricity" },
+              { icon: FaShoppingCart, name: "Shopping" },
+            ].map((service, index) => (
+              <div key={index} className="flex flex-col items-center gap-2 bg-black/20 p-3 rounded-lg">
+                <service.icon size={24} />
+                <p className="text-xs sm:text-sm">{service.name}</p>
+              </div>
+            ))}
           </div>
         </div>
 
+        {/* Recent Transactions */}
         <div className="bg-[#1A1A1A] p-4 rounded-xl shadow-md">
           <h3 className="text-sm font-semibold mb-3">Recent transactions</h3>
           <div className="space-y-2">
